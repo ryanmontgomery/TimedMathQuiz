@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Math_Quiz
 {
@@ -62,7 +63,7 @@ namespace Math_Quiz
 
             quotient.Value = 0;
 
-            //Starting the Timer
+            //Starting the Timer            
             timeLeft = 30;
             timeLabel.Text = "30 seconds";
             timer1.Start();
@@ -78,7 +79,30 @@ namespace Math_Quiz
                 answerBox.Select(0, lengthOfAnswer);
             }
         }
+        //Sound alerts to hint at correct answer      
+        private void CorrectDifferenceAlert(object sender, EventArgs e)
+        {
+            if (difference.Value == minuend - subtrahend)
+                SystemSounds.Beep.Play();
+        }
+        private void CorrectSumAlert(object sender, EventArgs e)
+        {
+            if (Sum.Value == addend1 + addend2)
+                SystemSounds.Beep.Play();
+        }
+        private void CorrectProductAlert(object sender, EventArgs e)
+        {
+            if(product.Value == multiplicand * multiplier)
+                SystemSounds.Beep.Play();
+        }
 
+        private void CorrectQuotientAlert(object sender, EventArgs e)
+        {
+            if (quotient.Value == dividend / divisor)
+                SystemSounds.Beep.Play();
+        }
+
+        //Pressing the start button event
         private void startButton_Click_1(object sender, EventArgs e)
         {
             StartTheQuiz();
@@ -96,6 +120,11 @@ namespace Math_Quiz
             }
             else if (timeLeft > 0)
             {
+                if(timeLeft <= 6)
+                {
+                    timeLabel.BackColor = Color.Red;
+                }
+
                 timeLeft = timeLeft - 1;
                 timeLabel.Text = timeLeft + " seconds";
             }
@@ -103,6 +132,7 @@ namespace Math_Quiz
             {
                 timer1.Stop();
                 timeLabel.Text = "Times up!";
+                timeLabel.BackColor = default(Color);
                 MessageBox.Show("You didn't finish in time.", "Sorry!");
                 Sum.Value = addend1 + addend2;
                 difference.Value = minuend - subtrahend;
