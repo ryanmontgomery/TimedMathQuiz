@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 
@@ -79,6 +73,7 @@ namespace Math_Quiz
                 answerBox.Select(0, lengthOfAnswer);
             }
         }
+
         //Sound alerts to hint at correct answer      
         private void CorrectDifferenceAlert(object sender, EventArgs e)
         {
@@ -95,7 +90,6 @@ namespace Math_Quiz
             if(product.Value == multiplicand * multiplier)
                 SystemSounds.Beep.Play();
         }
-
         private void CorrectQuotientAlert(object sender, EventArgs e)
         {
             if (quotient.Value == dividend / divisor)
@@ -107,6 +101,11 @@ namespace Math_Quiz
         {
             StartTheQuiz();
             startButton.Enabled = false;
+        }
+
+        private void LoadDate(object sender, EventArgs e)
+        {
+            CurrentDateLabel.Text = DateTime.Today.ToString("dd MMMM yyyy");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -152,7 +151,7 @@ namespace Math_Quiz
             else
                 return false;
         }
-
+        
         public Form1()
         {
             InitializeComponent();
