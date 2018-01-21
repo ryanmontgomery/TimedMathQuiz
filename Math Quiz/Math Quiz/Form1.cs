@@ -74,7 +74,7 @@ namespace Math_Quiz
             }
         }
 
-        //Sound alerts to hint at correct answer      
+        //Sound alerts when correct answer is entered     
         private void CorrectDifferenceAlert(object sender, EventArgs e)
         {
             if (difference.Value == minuend - subtrahend)
